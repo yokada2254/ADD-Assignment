@@ -5,7 +5,6 @@ services:
     ports:
       - "8080:80"
       - "443:443"
-      - "8000:8000"
     volumes:
       - ./code:/var/www/html
       - ./default.conf:/etc/nginx/conf.d/default.conf
@@ -16,8 +15,12 @@ services:
 
   php:
     build: ./php-with-ext
+    ports:
+      - "8000:8000"
     volumes:
       - ./code:/var/www/html
+    links:
+      - mysql
     restart: always
 
   mysql:
@@ -28,4 +31,11 @@ services:
       - ./mysql:/var/lib/mysql
     environment:
       MYSQL_ROOT_PASSWORD: 1234
+    restart: always
+
+  nodejs:
+    image: node:14.11.0-stretch
+    volumes:
+      - ./code:/var/www/html
+    entrypoint: ["tail", "-f", "/dev/null"]
     restart: always
