@@ -1,5 +1,6 @@
 FROM php:7.4.10-fpm 
-RUN apt update && \
+RUN ln -snf /usr/share/zoneinfo/Asia/Hong_Kong /etc/localtime && \
+    apt update && \
     apt install -y libzip-dev unzip && \
     docker-php-ext-configure zip && \
     docker-php-ext-configure mysqli && \
