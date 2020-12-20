@@ -1,2 +1,5 @@
 mysql/*
-code/*
+code/hkproperty/node_modules/*
+code/.well-known/*
+certificate.crt
+private.key
