@@ -1,4 +1,4 @@
-version: "3.8"
+version: "3.1"
 services:
   web:
     image: nginx:1.19.2
@@ -8,6 +8,8 @@ services:
     volumes:
       - ./code:/var/www/html
       - ./default.conf:/etc/nginx/conf.d/default.conf
+      - ./certificate.crt:/etc/nginx/ssl/certificate.crt
+      - ./private.key:/etc/nginx/ssl/private.key
     links:
       - php
       - mysql
@@ -19,18 +21,21 @@ services:
       - "8000:8000"
     volumes:
       - ./code:/var/www/html
+      - ./php.ini:/usr/local/etc/php/php.ini
     links:
       - mysql
     restart: always
-
   mysql:
-    image: mysql:8.0.21
+#   image: mysql:8.0.21
+    image: mysql/mysql-server:8.0.22
     ports:
       - "3306:3306"
     volumes:
       - ./mysql:/var/lib/mysql
+      - ./my.cnf:/etc/mysql/conf.d/my.cnf
+      #- ./my.cnf:/etc/mysql/my.cnf
     environment:
-      MYSQL_ROOT_PASSWORD: 1234
+      MYSQL_ROOT_PASSWORD: databaseforhomework22342233
     restart: always
 
   nodejs:

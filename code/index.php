@@ -2,7 +2,7 @@
 #phpinfo();
 
 #echo function_exists('mysqli_connect')?'1':'2';
-$link = mysqli_connect("mysql", "root", "1234")or die(mysqli_connect_error());
+$link = mysqli_connect("mysql", "root", "databaseforhomework22342233")or die(mysqli_connect_error());
 
 $sql = "SHOW DATABASES;";
 $res = mysqli_query($link, $sql);
