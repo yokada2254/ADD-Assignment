@@ -13,7 +13,7 @@ services:
     links:
       - php
       - mysql
-    restart: always
+    #restart: always
 
   php:
     build: ./php-with-ext
@@ -24,7 +24,8 @@ services:
       - ./php.ini:/usr/local/etc/php/php.ini
     links:
       - mysql
-    restart: always
+    #restart: always
+
   mysql:
 #   image: mysql:8.0.21
     image: mysql/mysql-server:8.0.22
@@ -36,11 +37,11 @@ services:
       #- ./my.cnf:/etc/mysql/my.cnf
     environment:
       MYSQL_ROOT_PASSWORD: databaseforhomework22342233
-    restart: always
+    #restart: always
 
   nodejs:
     image: node:14.11.0-stretch
     volumes:
       - ./code:/var/www/html
     entrypoint: ["tail", "-f", "/dev/null"]
-    restart: always
+    #restart: always
